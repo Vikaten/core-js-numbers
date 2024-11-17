@@ -181,8 +181,9 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const powValue = 10 ** pow;
+  return Math.round(num / powValue) * powValue;
 }
 
 /**
@@ -202,8 +203,18 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  if (n <= 1) return false;
+  if (n <= 3) return true;
+  if (n % 2 === 0 || n % 3 === 0) return false;
+  let i = 2;
+  while (i <= Math.sqrt(n)) {
+    if (n % i === 0) {
+      return false;
+    }
+    i += 1;
+  }
+  return true;
 }
 
 /**
@@ -221,8 +232,12 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const typeOfValue = parseInt(value, 10);
+  if (!Number.isNaN(typeOfValue)) {
+    return typeOfValue;
+  }
+  return def;
 }
 
 /**
@@ -236,8 +251,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -253,8 +268,23 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  let a = 0;
+  let b = 1;
+  let fi = 0;
+  if (index === 0) {
+    return a;
+  }
+  if (index === 1) {
+    return b;
+  }
+  for (let i = 2; i <= index; i += 1) {
+    fi = a + b;
+    a = b;
+    b = fi;
+  }
+
+  return b;
 }
 
 /**
@@ -268,8 +298,11 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  if (n === 1) {
+    return 1;
+  }
+  return n + getSumToN(n - 1);
 }
 
 /**
@@ -283,8 +316,12 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let count = 0;
+  for (let i = 0; i < num.toString().length; i += 1) {
+    count += parseInt(num.toString()[i], 10);
+  }
+  return count;
 }
 
 /**
@@ -298,8 +335,16 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  let num2 = num;
+  if (num2 <= 0) return false;
+  while (num2 > 1) {
+    if (num2 % 2 !== 0) {
+      return false;
+    }
+    num2 /= 2;
+  }
+  return true;
 }
 
 /**
@@ -312,8 +357,8 @@ function isPowerOfTwo(/* num */) {
  *   0 => 0
  *   Math.PI / 2 => 1
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
